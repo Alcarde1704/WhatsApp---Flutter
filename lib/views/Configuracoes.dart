@@ -107,6 +107,35 @@ class _ConfiguracoesState extends State<Configuracoes>
       .doc(_idUsuarioLogado)
       .update( dadosAtualizar );
 
+    setState(() {
+      _urlImagemRecuperada = url;
+    });
+
+  }
+
+  // _deletarUrlImagem() async {
+
+  //   FirebaseFirestore db = FirebaseFirestore.instance;
+
+    
+
+  // }
+
+  _atualizarNomeFirestore(String texto) {
+
+    String nome = _controllerNome.text;
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    Map<String, dynamic> dadosAtualizar = {
+      "nome": nome
+    };
+
+    db.collection("usuarios")
+      .doc(_idUsuarioLogado)
+      .update( dadosAtualizar );
+    
+    _recuperarDadosUsuarios();
+
   }
 
   _recuperarDadosUsuarios() async {
@@ -176,12 +205,7 @@ class _ConfiguracoesState extends State<Configuracoes>
             child: Column(
               
               children: [
-                    _subindoImagem 
-                    ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ColorsKey.ICONS_COLOR),),
-                    )
-                    : Container(),
+                    
 
                 CircleAvatar(
                   radius: 80,
@@ -230,7 +254,14 @@ class _ConfiguracoesState extends State<Configuracoes>
                   onTap: () {
                     
                   },
-                )
+                ),
+
+                _subindoImagem 
+                    ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ColorsKey.ICONS_COLOR),),
+                    )
+                    : Container(),
 
                 
               ],
@@ -274,7 +305,12 @@ class _ConfiguracoesState extends State<Configuracoes>
         }
       },
       onFieldSubmitted: (value) {
+        _atualizarNomeFirestore(value);
         Navigator.pop(context);
+      },
+
+      onChanged: (texto) {
+        _atualizarNomeFirestore(texto);
       },
     );
   }
@@ -332,7 +368,13 @@ class _ConfiguracoesState extends State<Configuracoes>
                                     color: Colors.white),
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _atualizarUrlImagemFirestore("");
+                                  setState(() {
+                                    
+                                  });
+                                  Navigator.pop(context);
+                                },
                                 icon: Icon(Icons.delete),
                                 color: Colors.grey,
                               )
