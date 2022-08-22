@@ -33,6 +33,7 @@ class _TabContatosState extends State<TabContatos> {
       if (dados!["email"] == _emailRecuperado) continue;
 
       Usuario usuario = Usuario();
+      usuario.idUsuario = item.id;
       usuario.email = dados["email"];
       usuario.nome = dados["nome"];
 

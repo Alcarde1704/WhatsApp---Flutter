@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ColorsKey {
 
-  static final Color APPBAR_COLOR = Colors.black54;
+  // static final Color APPBAR_COLOR = Color(0x85058F23);
+  static final Color APPBAR_COLOR = Color(0xff075E54);
   static final Color BODY_COLOR = Colors.black87;
 
   static final Color TEXT_TITLE_COLOR = Colors.white;

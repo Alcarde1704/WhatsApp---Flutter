@@ -24,25 +24,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
   var _emailUsuario;
 
-  // Future _recuperarDadosUsuarios() async {
+  Future _recuperarDadosUsuarios() async {
 
-  //   FirebaseAuth auth = FirebaseAuth.instance;
-  //   //auth.signOut();
-  //   // User? usuarioLogado = await auth.currentUser;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    //auth.signOut();
+    User? usuarioLogado = await auth.currentUser;
 
-  //   // setState(() {
-  //   //   _emailUsuario = usuarioLogado!.email;
-  //   // });
+    setState(() {
+      _emailUsuario = usuarioLogado!.email;
+    });
 
     
 
-  // }
+  }
+
+  Future _verificaUsuarioLogado() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    User? usuarioLogado = await auth.currentUser;
+    
+    if(usuarioLogado == null) {
+
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LOGIN);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-
-    // _recuperarDadosUsuarios();
+    _verificaUsuarioLogado();
+    _recuperarDadosUsuarios();
 
     _tabController = TabController(length: 2, vsync: this);
   }

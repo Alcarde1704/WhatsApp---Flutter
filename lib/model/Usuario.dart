@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Usuario {
+  var _idUsuario;
   var _nome;
   var _email;
   var _senha;
@@ -15,6 +16,12 @@ class Usuario {
     };
 
     return map;
+  }
+
+  String get idUsuario => _idUsuario;
+
+  set idUsuario(String value){
+    _idUsuario = value;
   }
 
   String get senha => _senha;
