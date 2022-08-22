@@ -140,7 +140,7 @@ class _MensagensState extends State<Mensagens>
     cRemetente.nome = widget.contato.nome;
     cRemetente.caminhoFoto = widget.contato.urlImagem;
     cRemetente.tipoMensagem = msg.tipo;
-
+    cRemetente.salvar();
    
     //Salvar conversa destinatario
     Conversa cDestinatario = Conversa();
@@ -150,7 +150,7 @@ class _MensagensState extends State<Mensagens>
     cDestinatario.nome = widget.contato.nome;
     cDestinatario.caminhoFoto = widget.contato.urlImagem;
     cDestinatario.tipoMensagem = msg.tipo;
-
+    cDestinatario.salvar();
   }
 
   _salvarMensagem(

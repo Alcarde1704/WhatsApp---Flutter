@@ -19,8 +19,7 @@ class Conversa {
             .doc(this.idRemetente)
             .collection("ultima_conversa")
             .doc(this.idDestinatario)
-            .set( this.toMap() )
-            ;
+            .set( this.toMap() );
   }
 
   Map<String, dynamic> toMap() {
